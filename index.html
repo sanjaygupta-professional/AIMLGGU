@@ -802,6 +802,474 @@
                 background: white;
             }
         }
+        /* Industry Use Case Library Styles */
+        .industry-selector-container {
+            margin: 3rem 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .industry-selector {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 1rem;
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .industry-tab {
+            padding: 1rem 2rem;
+            border: 2px solid var(--light-gray);
+            background: var(--white);
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: var(--near-black);
+        }
+
+        .industry-tab:hover:not(:disabled) {
+            border-color: var(--apple-blue);
+            transform: translateY(-2px);
+        }
+
+        .industry-tab.active {
+            background: var(--apple-blue);
+            color: var(--white);
+            border-color: var(--apple-blue);
+        }
+
+        .industry-content {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .industry-content.active {
+            display: block;
+            opacity: 1;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .industry-overview {
+            background: linear-gradient(135deg, var(--white) 0%, #F0F8FF 100%);
+            border-radius: 24px;
+            padding: 3rem;
+            margin: 3rem 0;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .industry-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .industry-icon-large {
+            font-size: 4rem;
+        }
+
+        .industry-header h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--near-black);
+            letter-spacing: 0.05em;
+        }
+
+        .industry-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .key-challenges {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: rgba(0, 122, 255, 0.05);
+            border-radius: 16px;
+            border-left: 4px solid var(--apple-blue);
+        }
+
+        .key-challenges h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--apple-blue);
+            margin-bottom: 1rem;
+        }
+
+        .key-challenges ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .key-challenges li {
+            padding: 0.75rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: var(--near-black);
+        }
+
+        .key-challenges li::before {
+            content: '•';
+            position: absolute;
+            left: 0.5rem;
+            color: var(--apple-blue);
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+
+        .domains-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .domain-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            border-left: 4px solid var(--apple-blue);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .domain-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0, 122, 255, 0.15);
+        }
+
+        .domain-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .domain-icon {
+            font-size: 2.5rem;
+        }
+
+        .domain-header h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--near-black);
+        }
+
+        .problems-badge {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--near-black);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .domain-preview {
+            color: var(--gray);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .view-problems-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--apple-blue);
+            color: var(--white);
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .view-problems-btn:hover {
+            background: #0051D5;
+            transform: scale(1.02);
+        }
+
+        .industry-cta {
+            background: linear-gradient(135deg, var(--apple-blue) 0%, #0051D5 100%);
+            color: var(--white);
+            border-radius: 24px;
+            padding: 3rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .industry-cta h3 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-checklist p {
+            font-size: 1.125rem;
+            margin: 1rem 0;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 3rem;
+            max-width: 1000px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.3s;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            color: var(--gray);
+            cursor: pointer;
+            transition: color 0.3s;
+            z-index: 1;
+        }
+
+        .modal-close:hover {
+            color: var(--near-black);
+        }
+
+        .problem-detail h3 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: var(--near-black);
+        }
+
+        .problem-section {
+            margin: 2rem 0;
+            padding: 2rem;
+            background: var(--light-gray);
+            border-radius: 16px;
+        }
+
+        .problem-section h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--apple-blue);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .problem-section p, .problem-section li {
+            color: var(--near-black);
+            line-height: 1.8;
+            margin-bottom: 0.5rem;
+        }
+
+        .algorithm-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .algorithm-tag {
+            background: var(--apple-blue);
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .algorithm-tag.alternative {
+            background: var(--gray);
+        }
+
+        .dataset-links {
+            display: grid;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .dataset-link {
+            background: var(--white);
+            padding: 1rem;
+            border-radius: 12px;
+            border: 2px solid var(--light-gray);
+            transition: all 0.3s;
+            text-decoration: none;
+            color: var(--near-black);
+            display: block;
+        }
+
+        .dataset-link:hover {
+            border-color: var(--apple-blue);
+            transform: translateX(5px);
+        }
+
+        .dataset-link strong {
+            color: var(--apple-blue);
+        }
+
+        .impact-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .impact-list li {
+            padding: 0.75rem 0;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .impact-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success-green);
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .kpi-item {
+            background: var(--white);
+            padding: 1rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .kpi-metric {
+            font-weight: 600;
+            color: var(--near-black);
+            margin-bottom: 0.5rem;
+        }
+
+        .kpi-target {
+            color: var(--gold);
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .success-stories {
+            display: grid;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .success-story {
+            background: rgba(52, 199, 89, 0.1);
+            padding: 1rem;
+            border-radius: 12px;
+            border-left: 3px solid var(--success-green);
+        }
+
+        .success-story strong {
+            color: var(--success-green);
+        }
+
+        /* Responsive adjustments for industry section */
+        @media (max-width: 768px) {
+            .industry-selector {
+                flex-direction: column;
+            }
+
+            .industry-tab {
+                width: 100%;
+            }
+
+            .industry-overview {
+                padding: 2rem;
+            }
+
+            .industry-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .industry-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .domains-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                padding: 2rem;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -814,6 +1282,7 @@
                 <li><a href="#purpose">Purpose</a></li>
                 <li><a href="#objectives">Objectives</a></li>
                 <li><a href="#tasks">Tasks</a></li>
+                <li><a href="#industry-library">Use Cases</a></li>
                 <li><a href="#deliverables">Deliverables</a></li>
                 <li><a href="#assessment">Assessment</a></li>
                 <li><a href="#quality">Quality</a></li>
@@ -1066,6 +1535,187 @@
             </div>
         </div>
     </section>
+
+    <!-- Section 4B: Industry Use Case Library -->
+    <section id="industry-library" style="background: linear-gradient(135deg, #FFFFFF 0%, #E8F4FF 100%);">
+        <div class="section-header">
+            <h2 class="section-title">Industry Use Case Library</h2>
+            <p class="section-subtitle">Real-world problems. Ready-to-use datasets. Proven business impact.</p>
+        </div>
+
+        <!-- Industry Selector -->
+        <div class="industry-selector-container">
+            <div class="industry-selector">
+                <button class="industry-tab active" data-industry="banking">
+                    🏦 Banking & Financial Services
+                </button>
+                <button class="industry-tab" data-industry="healthcare">
+                    🏥 Healthcare & Pharma
+                </button>
+                <button class="industry-tab" data-industry="coming-soon" disabled style="opacity: 0.5;">
+                    🛒 Retail (Coming Soon)
+                </button>
+            </div>
+        </div>
+
+        <!-- Banking Industry Content -->
+        <div class="industry-content active" id="banking-content">
+            <!-- Industry Overview Banner -->
+            <div class="industry-overview">
+                <div class="industry-header">
+                    <span class="industry-icon-large">🏦</span>
+                    <h3>BANKING & FINANCIAL SERVICES</h3>
+                </div>
+                <div class="industry-stats">
+                    <div class="stat-item">
+                        <div class="stat-value">$200T+</div>
+                        <div class="stat-label">Assets Under Management</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">$500B+</div>
+                        <div class="stat-label">Daily Trading Volume</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">10-15%</div>
+                        <div class="stat-label">Annual Customer Churn</div>
+                    </div>
+                </div>
+                <div class="key-challenges">
+                    <h4>KEY CHALLENGES:</h4>
+                    <ul>
+                        <li>Credit risk assessment with 20-30% undetected defaults</li>
+                        <li>Customer acquisition costs 5-7× higher than retention</li>
+                        <li>$80B lost annually to fraud</li>
+                        <li>Regulatory compliance complexity (Basel III, Fair Lending)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Domain Cards -->
+            <div class="domains-grid">
+                <!-- Domain 1: Retail Banking -->
+                <div class="domain-card" data-domain="retail-banking">
+                    <div class="domain-header">
+                        <span class="domain-icon">💳</span>
+                        <h4>Retail Banking</h4>
+                    </div>
+                    <div class="problems-badge">3 Problems</div>
+                    <p class="domain-preview">Credit risk, customer lifetime value, churn prediction...</p>
+                    <button class="view-problems-btn" onclick="showDomainProblems('banking-retail')">View All Problems</button>
+                </div>
+
+                <!-- Domain 2: Investment Banking -->
+                <div class="domain-card" data-domain="investment-banking">
+                    <div class="domain-header">
+                        <span class="domain-icon">📈</span>
+                        <h4>Investment Banking & Trading</h4>
+                    </div>
+                    <div class="problems-badge">2 Problems</div>
+                    <p class="domain-preview">Algorithmic trading, volatility forecasting...</p>
+                    <button class="view-problems-btn" onclick="showDomainProblems('banking-investment')">View All Problems</button>
+                </div>
+
+                <!-- Domain 3: Insurance -->
+                <div class="domain-card" data-domain="insurance">
+                    <div class="domain-header">
+                        <span class="domain-icon">🛡️</span>
+                        <h4>Insurance</h4>
+                    </div>
+                    <div class="problems-badge">1 Problem</div>
+                    <p class="domain-preview">Fraud detection in insurance claims...</p>
+                    <button class="view-problems-btn" onclick="showDomainProblems('banking-insurance')">View All Problems</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Healthcare Industry Content -->
+        <div class="industry-content" id="healthcare-content">
+            <!-- Industry Overview Banner -->
+            <div class="industry-overview">
+                <div class="industry-header">
+                    <span class="industry-icon-large">🏥</span>
+                    <h3>HEALTHCARE & PHARMA</h3>
+                </div>
+                <div class="industry-stats">
+                    <div class="stat-item">
+                        <div class="stat-value">$12T+</div>
+                        <div class="stat-label">Annual Global Spending</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">8B</div>
+                        <div class="stat-label">Patients Worldwide</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">$26B</div>
+                        <div class="stat-label">Cost of Readmissions</div>
+                    </div>
+                </div>
+                <div class="key-challenges">
+                    <h4>KEY CHALLENGES:</h4>
+                    <ul>
+                        <li>30-day readmissions cost $26B annually with Medicare penalties</li>
+                        <li>15-30% appointment no-show rate = $150B lost</li>
+                        <li>Sepsis affects 1.7M Americans, 270K deaths annually</li>
+                        <li>90% drug failure rate in clinical trials</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Domain Cards -->
+            <div class="domains-grid">
+                <!-- Domain 1: Clinical Care -->
+                <div class="domain-card">
+                    <div class="domain-header">
+                        <span class="domain-icon">🏥</span>
+                        <h4>Clinical Care & Patient Outcomes</h4>
+                    </div>
+                    <div class="problems-badge">3 Problems</div>
+                    <p class="domain-preview">Hospital readmissions, patient no-shows, sepsis detection...</p>
+                    <button class="view-problems-btn" onclick="showDomainProblems('healthcare-clinical')">View All Problems</button>
+                </div>
+
+                <!-- Domain 2: Pharmaceutical R&D -->
+                <div class="domain-card">
+                    <div class="domain-header">
+                        <span class="domain-icon">💊</span>
+                        <h4>Pharmaceutical R&D & Drug Discovery</h4>
+                    </div>
+                    <div class="problems-badge">3 Problems</div>
+                    <p class="domain-preview">Drug efficacy prediction, adverse events, demand forecasting...</p>
+                    <button class="view-problems-btn" onclick="showDomainProblems('healthcare-pharma')">View All Problems</button>
+                </div>
+
+                <!-- Domain 3: Population Health -->
+                <div class="domain-card">
+                    <div class="domain-header">
+                        <span class="domain-icon">🌍</span>
+                        <h4>Population Health & Public Health</h4>
+                    </div>
+                    <div class="problems-badge">3 Problems</div>
+                    <p class="domain-preview">Disease outbreak prediction, patient segmentation, chronic disease...</p>
+                    <button class="view-problems-btn" onclick="showDomainProblems('healthcare-population')">View All Problems</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Banner -->
+        <div class="industry-cta">
+            <h3>Ready to Build Your Playbook?</h3>
+            <div class="cta-checklist">
+                <p>✓ Choose your industry from above</p>
+                <p>✓ Select algorithms from the 10 covered in class</p>
+                <p>✓ Use these validated use cases as your foundation</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Detail Modal -->
+    <div class="modal" id="problemModal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <div id="modalBody"></div>
+        </div>
+    </div>
 
     <!-- Section 5: Deliverables -->
     <section id="deliverables">
@@ -1652,6 +2302,535 @@
 
         // Initial visibility for first section
         document.querySelector('#hero').classList.add('visible');
+        // Industry Library JavaScript
+
+        // Industry Tab Switching
+        document.querySelectorAll('.industry-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                if (this.disabled) return;
+
+                // Remove active class from all tabs and content
+                document.querySelectorAll('.industry-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.industry-content').forEach(c => c.classList.remove('active'));
+
+                // Add active class to clicked tab
+                this.classList.add('active');
+
+                // Show corresponding content
+                const industry = this.getAttribute('data-industry');
+                document.getElementById(industry + '-content').classList.add('active');
+            });
+        });
+
+        // Problem Data
+        const problemData = {
+            'banking-retail': [
+                {
+                    title: 'Credit Risk Assessment & Loan Default Prediction',
+                    challenge: 'Banks lose $50-100 billion annually to loan defaults. Traditional credit scoring models (FICO) miss 20-30% of defaults while rejecting creditworthy applicants.',
+                    algorithms: ['Logistic Regression (Primary)', 'Random Forest (Alternative)', 'XGBoost (Alternative)'],
+                    rationale: 'Logistic Regression: Explainability for regulators, interpretable coefficients. Random Forest: Higher accuracy, captures non-linear relationships.',
+                    impact: [
+                        'Reduce default rate from 5% to 3% = $20M saved annually per $1B loan portfolio',
+                        'Improve approval rate for good customers by 10-15%',
+                        'Reduce loan processing time from days to minutes',
+                        'Meet Fair Lending regulatory requirements'
+                    ],
+                    datasets: [
+                        { name: 'Kaggle: Loan Default Dataset', url: 'https://www.kaggle.com/datasets/yasserh/loan-default-dataset' },
+                        { name: 'UCI: Default of Credit Card Clients', url: 'https://archive.ics.uci.edu/ml/datasets/default+of+credit+card+clients' },
+                        { name: 'Lending Club Loan Data', url: 'https://www.kaggle.com/datasets/wordsforthewise/lending-club' }
+                    ],
+                    examples: [
+                        { company: 'JPMorgan Chase', result: 'Reduced credit card default rate by 20% using ML' },
+                        { company: 'Wells Fargo', result: 'Automated 65% of credit decisions' },
+                        { company: 'Capital One', result: '15% better accuracy than traditional scoring' }
+                    ],
+                    kpis: [
+                        { metric: 'Default rate', target: '< 3%' },
+                        { metric: 'False positive rate', target: '< 10%' },
+                        { metric: 'AUC-ROC', target: '> 0.80' },
+                        { metric: 'Processing time', target: '< 5 minutes' }
+                    ]
+                },
+                {
+                    title: 'Customer Lifetime Value (CLV) Prediction',
+                    challenge: 'Banks spend $200-500 to acquire each customer but lack accurate prediction of long-term profitability. 80% of profits come from 20% of customers.',
+                    algorithms: ['Linear Regression (Primary)', 'Random Forest Regression (Alternative)', 'Gradient Boosting (Alternative)'],
+                    rationale: 'Linear Regression: Simple, interpretable model for continuous value prediction.',
+                    impact: [
+                        'Optimize marketing spend: Allocate budget to high-CLV segments',
+                        'Personalized retention programs for high-value at-risk customers',
+                        '15-25% ROI improvement on customer acquisition campaigns',
+                        'Cross-sell/upsell prioritization'
+                    ],
+                    datasets: [
+                        { name: 'Kaggle: Bank Marketing Dataset', url: 'https://www.kaggle.com/datasets/janiobachmann/bank-marketing-dataset' },
+                        { name: 'UCI: Bank Marketing Data', url: 'https://archive.ics.uci.edu/ml/datasets/bank+marketing' }
+                    ],
+                    examples: [
+                        { company: 'Bank of America', result: 'Increased cross-sell by 30% using CLV models' },
+                        { company: 'HSBC', result: 'Improved profitability by 18% with CLV-based pricing' }
+                    ],
+                    kpis: [
+                        { metric: 'R-squared', target: '> 0.50' },
+                        { metric: 'RMSE', target: '< 20% of mean CLV' },
+                        { metric: 'Marketing ROI improvement', target: '15-25%' }
+                    ]
+                },
+                {
+                    title: 'Customer Churn Prediction',
+                    challenge: 'Retail banks lose 10-15% of customers annually. Acquiring a new customer costs 5-7× more than retaining existing ones.',
+                    algorithms: ['Logistic Regression (Primary)', 'Random Forest (Primary)', 'XGBoost (Alternative)'],
+                    rationale: 'Logistic Regression and Random Forest: Balance interpretability with accuracy for churn prediction.',
+                    impact: [
+                        '5% improvement in retention = $10-25M annually for mid-sized bank',
+                        'Proactive retention campaigns targeted to high-risk customers',
+                        'Reduce customer acquisition costs'
+                    ],
+                    datasets: [
+                        { name: 'Kaggle: Bank Customer Churn', url: 'https://www.kaggle.com/datasets/shrutimechlearn/churn-modelling' },
+                        { name: 'Kaggle: Telco Customer Churn (adaptable)', url: 'https://www.kaggle.com/datasets/blastchar/telco-customer-churn' }
+                    ],
+                    examples: [
+                        { company: 'Bank of America', result: 'Reduced churn by 12% using ML-based early warning' },
+                        { company: 'TD Bank', result: '85% accuracy predicting churn 6 months in advance' }
+                    ],
+                    kpis: [
+                        { metric: 'Churn rate', target: '< 10% annually' },
+                        { metric: 'Prediction accuracy', target: '> 75%' },
+                        { metric: 'ROC-AUC', target: '> 0.75' }
+                    ]
+                }
+            ],
+            'banking-investment': [
+                {
+                    title: 'Algorithmic Trading - Price Movement Prediction',
+                    challenge: 'Institutional traders execute $500B+ daily. Even 0.1% improvement in execution quality = $500M daily value capture.',
+                    algorithms: ['Random Forest (Primary)', 'XGBoost (Alternative)', 'LSTM (Alternative)'],
+                    rationale: 'Random Forest: Robust for capturing non-linear patterns in market data without overfitting.',
+                    impact: [
+                        '2-5% improvement in execution quality = $50-150M annually',
+                        'Reduced market impact costs',
+                        'Higher Sharpe ratio (risk-adjusted returns)'
+                    ],
+                    datasets: [
+                        { name: 'Kaggle: Stock Market Dataset', url: 'https://www.kaggle.com/datasets/borismarjanovic/price-volume-data-for-all-us-stocks-etfs' },
+                        { name: 'Alpha Vantage API', url: 'https://www.alphavantage.co/' },
+                        { name: 'Yahoo Finance API (yfinance)', url: 'https://pypi.org/project/yfinance/' }
+                    ],
+                    examples: [
+                        { company: 'Two Sigma', result: 'Manages $60B AUM using ensemble ML models' },
+                        { company: 'Renaissance Technologies', result: '39% annualized returns using ML' },
+                        { company: 'Citadel Securities', result: 'Executes 47% of US retail equity volume algorithmically' }
+                    ],
+                    kpis: [
+                        { metric: 'Directional accuracy', target: '> 52%' },
+                        { metric: 'Sharpe ratio', target: '> 1.5' },
+                        { metric: 'Win rate', target: '> 55%' },
+                        { metric: 'Maximum drawdown', target: '< 15%' }
+                    ]
+                },
+                {
+                    title: 'Volatility Forecasting for Risk Management',
+                    challenge: 'Banks must hold regulatory capital against risk (Basel III). Inaccurate volatility forecasts lead to violations or inefficient capital allocation.',
+                    algorithms: ['ARIMA (Primary)', 'GARCH (Primary)', 'LSTM (Alternative)', 'Prophet (Alternative)'],
+                    rationale: 'ARIMA/GARCH: Time-tested models for volatility with strong theoretical foundations.',
+                    impact: [
+                        'Accurate VaR calculations for regulatory compliance',
+                        'Dynamic position sizing',
+                        '15-25% reduction in maximum drawdown',
+                        'Optimize hedging costs'
+                    ],
+                    datasets: [
+                        { name: 'CBOE VIX Historical Data', url: 'http://www.cboe.com/products/vix-index-volatility/' },
+                        { name: 'Yahoo Finance', url: 'https://finance.yahoo.com/' },
+                        { name: 'FRED Economic Data', url: 'https://fred.stlouisfed.org/' }
+                    ],
+                    examples: [
+                        { company: 'JPMorgan', result: 'Uses GARCH models for VaR, managing $3.7T in assets' },
+                        { company: 'Goldman Sachs', result: 'Volatility forecasting for trading desk risk limits' }
+                    ],
+                    kpis: [
+                        { metric: 'RMSE', target: '< 3 percentage points' },
+                        { metric: 'Direction accuracy', target: '> 65%' },
+                        { metric: 'VaR backtesting coverage', target: '95%' }
+                    ]
+                }
+            ],
+            'banking-insurance': [
+                {
+                    title: 'Insurance Claim Fraud Detection',
+                    challenge: 'Insurance fraud costs $80 billion annually. Traditional methods catch only 15-20% of fraud.',
+                    algorithms: ['Random Forest (Primary)', 'XGBoost (Primary)', 'Logistic Regression (Alternative)', 'Isolation Forest (Alternative)'],
+                    rationale: 'Random Forest and XGBoost: High accuracy in identifying complex fraud patterns.',
+                    impact: [
+                        '30-50% improvement in fraud detection',
+                        '$10-20M saved annually for mid-sized insurer',
+                        'Faster legitimate claim processing'
+                    ],
+                    datasets: [
+                        { name: 'Kaggle: Insurance Fraud Detection', url: 'https://www.kaggle.com/datasets/shivamb/vehicle-claim-fraud-detection' },
+                        { name: 'Kaggle: Auto Insurance Claims', url: 'https://www.kaggle.com/datasets/xiaomengsun/car-insurance-claim-data' }
+                    ],
+                    examples: [
+                        { company: 'Allstate', result: 'ML fraud detection saved $45M in first year' },
+                        { company: 'State Farm', result: 'Reduced fraud investigation time by 40%' }
+                    ],
+                    kpis: [
+                        { metric: 'Fraud detection rate', target: '> 80%' },
+                        { metric: 'False positive rate', target: '< 10%' },
+                        { metric: 'ROI of fraud prevention', target: 'Track savings' }
+                    ]
+                }
+            ],
+            'healthcare-clinical': [
+                {
+                    title: 'Hospital Readmission Prediction',
+                    challenge: '30-day hospital readmissions cost the US healthcare system $26 billion annually. Medicare penalizes hospitals with high readmission rates (up to 3% of total reimbursements).',
+                    algorithms: ['Logistic Regression (Primary)', 'Random Forest (Alternative)', 'XGBoost (Alternative)'],
+                    rationale: 'Logistic Regression: Interpretability for clinicians and clear identification of risk factors.',
+                    impact: [
+                        '15-25% reduction in readmissions = $50-100M saved annually for large hospital system',
+                        'Avoid Medicare penalties ($10-50M annually)',
+                        'Improved patient outcomes and satisfaction',
+                        'Targeted post-discharge interventions'
+                    ],
+                    datasets: [
+                        { name: 'MIMIC-III Clinical Database', url: 'https://physionet.org/content/mimiciii/1.4/' },
+                        { name: 'Kaggle: Hospital Readmission Dataset', url: 'https://www.kaggle.com/datasets/brandao/diabetes-130-us-hospitals-for-years-1999-2008' },
+                        { name: 'CMS Hospital Readmissions Data', url: 'https://data.cms.gov/provider-data/topics/hospitals/readmissions-and-deaths' }
+                    ],
+                    examples: [
+                        { company: 'Kaiser Permanente', result: '20% reduction in readmissions using ML' },
+                        { company: 'Mount Sinai', result: 'Achieved AUC 0.78 for heart failure readmissions' },
+                        { company: 'Cleveland Clinic', result: 'Reduced cardiac readmissions by 18%' }
+                    ],
+                    kpis: [
+                        { metric: '30-day readmission rate', target: '< 12%' },
+                        { metric: 'AUC-ROC', target: '> 0.75' },
+                        { metric: 'Sensitivity for high-risk', target: '> 80%' }
+                    ]
+                },
+                {
+                    title: 'Patient No-Show Prediction',
+                    challenge: '15-30% of scheduled appointments result in no-shows, costing healthcare systems $150 billion annually in the US. Each missed appointment costs $200-500.',
+                    algorithms: ['Logistic Regression (Primary)', 'Random Forest (Primary)', 'XGBoost (Alternative)'],
+                    rationale: 'Balance between interpretability and accuracy for practical implementation.',
+                    impact: [
+                        '20-30% reduction in no-shows = $5-15M recovered annually',
+                        'Improved provider utilization (85% → 95%)',
+                        'Better appointment scheduling',
+                        'Enhanced patient engagement'
+                    ],
+                    datasets: [
+                        { name: 'Kaggle: Medical Appointment No-Shows', url: 'https://www.kaggle.com/datasets/joniarroba/noshowappointments' }
+                    ],
+                    examples: [
+                        { company: 'Partners HealthCare', result: '15% reduction in no-shows' },
+                        { company: 'Johns Hopkins', result: 'ML model achieved 0.82 AUC' },
+                        { company: 'Intermountain Healthcare', result: '$3.2M revenue recovery' }
+                    ],
+                    kpis: [
+                        { metric: 'No-show rate', target: '< 10%' },
+                        { metric: 'Prediction accuracy', target: '> 75%' },
+                        { metric: 'Provider utilization', target: '> 90%' }
+                    ]
+                },
+                {
+                    title: 'Sepsis Early Detection',
+                    challenge: 'Sepsis affects 1.7 million Americans annually, kills 270,000, and costs $27 billion. Each hour of delay increases mortality by 7-8%.',
+                    algorithms: ['Random Forest (Primary)', 'XGBoost (Primary)', 'LSTM (Alternative)'],
+                    rationale: 'Random Forest/XGBoost: High accuracy for time-critical predictions with multiple vital signs.',
+                    impact: [
+                        '15-25% reduction in sepsis mortality',
+                        '$8,000-12,000 cost savings per case',
+                        'Earlier antibiotic administration (within 1 hour vs 4+ hours)',
+                        'Regulatory compliance (CMS SEP-1 bundle)'
+                    ],
+                    datasets: [
+                        { name: 'MIMIC-III', url: 'https://physionet.org/content/mimiciii/1.4/' },
+                        { name: 'PhysioNet Challenge: Early Prediction of Sepsis', url: 'https://physionet.org/content/challenge-2019/1.0.0/' }
+                    ],
+                    examples: [
+                        { company: 'Johns Hopkins', result: 'InSight algorithm detects sepsis 28 hours earlier, 39% mortality reduction' },
+                        { company: 'Intermountain Healthcare', result: 'ML sepsis model achieved AUC 0.83' },
+                        { company: 'Duke Health', result: 'Reduced sepsis mortality by 18%' }
+                    ],
+                    kpis: [
+                        { metric: 'Time to antibiotic', target: '< 1 hour' },
+                        { metric: 'Sepsis mortality rate', target: '< 15%' },
+                        { metric: 'AUC-ROC', target: '> 0.80' }
+                    ]
+                }
+            ],
+            'healthcare-pharma': [
+                {
+                    title: 'Drug Efficacy Prediction for Clinical Trials',
+                    challenge: '90% of drugs fail in clinical trials. Average cost to bring one drug to market: $2.6 billion over 10-15 years. Phase III failures waste $200-500M per drug.',
+                    algorithms: ['Random Forest (Primary)', 'XGBoost (Primary)', 'Neural Networks (Alternative)'],
+                    rationale: 'Random Forest/XGBoost: Effective for molecular property analysis and trial outcome prediction.',
+                    impact: [
+                        '20-30% reduction in Phase III failures = $200-500M saved per avoided failure',
+                        'Faster time to market (reduce 10-15 years to 8-10 years)',
+                        'Better patient stratification',
+                        'Earlier termination of failing compounds'
+                    ],
+                    datasets: [
+                        { name: 'DrugBank', url: 'https://go.drugbank.com/' },
+                        { name: 'ChEMBL Database', url: 'https://www.ebi.ac.uk/chembl/' },
+                        { name: 'PubChem', url: 'https://pubchem.ncbi.nlm.nih.gov/' },
+                        { name: 'ClinicalTrials.gov', url: 'https://clinicaltrials.gov/' }
+                    ],
+                    examples: [
+                        { company: 'Pfizer', result: 'Reduced late-stage failures by 15% using ML' },
+                        { company: 'Novartis', result: 'AI-predicted immunology drug entered trials 2 years faster' },
+                        { company: 'AstraZeneca', result: 'Reduced drug discovery time by 30%' }
+                    ],
+                    kpis: [
+                        { metric: 'Phase III success rate', target: '> 50%' },
+                        { metric: 'Time to IND filing', target: '< 5 years' },
+                        { metric: 'R&D cost per approved drug', target: '< $2B' }
+                    ]
+                },
+                {
+                    title: 'Adverse Drug Event Prediction',
+                    challenge: 'Adverse drug events (ADEs) cause 100,000+ deaths annually in the US, cost $30-130 billion, and lead to drug recalls destroying billions in market value.',
+                    algorithms: ['Logistic Regression (Primary)', 'Random Forest (Primary)', 'XGBoost (Alternative)'],
+                    rationale: 'Logistic Regression: Interpretable for clinical decision support and regulatory requirements.',
+                    impact: [
+                        '30-50% reduction in preventable ADEs',
+                        '$5-10M saved annually per hospital system',
+                        'Avoid drug recalls and litigation ($100M-1B per recall)',
+                        'Improved patient safety'
+                    ],
+                    datasets: [
+                        { name: 'FDA FAERS Database', url: 'https://fis.fda.gov/extensions/FPD-QDE-FAERS/FPD-QDE-FAERS.html' },
+                        { name: 'MIMIC-III (medication data)', url: 'https://physionet.org/content/mimiciii/1.4/' }
+                    ],
+                    examples: [
+                        { company: 'Mayo Clinic', result: 'ML system reduced ADEs by 25%' },
+                        { company: 'Veterans Health Administration', result: 'Prevented 10,000+ ADEs annually' },
+                        { company: 'Geisinger Health', result: '35% ADE reduction' }
+                    ],
+                    kpis: [
+                        { metric: 'ADE rate per 1,000 patient-days', target: '< 10' },
+                        { metric: 'Prediction sensitivity', target: '> 85%' },
+                        { metric: 'Alert specificity', target: '> 70%' }
+                    ]
+                },
+                {
+                    title: 'Drug Demand Forecasting',
+                    challenge: 'Pharmaceutical supply chain waste totals $15 billion annually due to expiration and overstocking. Drug shortages affect 200+ medications.',
+                    algorithms: ['ARIMA (Primary)', 'Prophet (Primary)', 'LSTM (Alternative)'],
+                    rationale: 'ARIMA/Prophet: Time-tested for seasonal demand patterns and trend forecasting.',
+                    impact: [
+                        '20-35% reduction in inventory carrying costs',
+                        '40-60% reduction in stockouts',
+                        '$5-15M savings annually for mid-sized pharma distributor',
+                        'Improved patient access'
+                    ],
+                    datasets: [
+                        { name: 'Medicare Part D Prescription Data', url: 'https://www.cms.gov/Research-Statistics-Data-and-Systems/Statistics-Trends-and-Reports/Medicare-Provider-Charge-Data/PartD2019' },
+                        { name: 'WHO Pharmaceutical Consumption Data', url: 'https://www.who.int/data/gho/data/themes/topics/topic-details/GHO/pharmaceutical-consumption' }
+                    ],
+                    examples: [
+                        { company: 'Cardinal Health', result: 'ML forecasting reduced stockouts by 45%' },
+                        { company: 'McKesson', result: 'Improved forecast accuracy from 65% to 85%' },
+                        { company: 'CVS Health', result: 'Dynamic inventory optimization saved $30M annually' }
+                    ],
+                    kpis: [
+                        { metric: 'Forecast accuracy (MAPE)', target: '< 15%' },
+                        { metric: 'Stockout rate', target: '< 2%' },
+                        { metric: 'Inventory turnover ratio', target: '> 8' }
+                    ]
+                }
+            ],
+            'healthcare-population': [
+                {
+                    title: 'Disease Outbreak Prediction',
+                    challenge: 'Disease outbreaks cost billions in healthcare expenses and economic disruption. Early detection can save lives and reduce economic impact by 40-60%.',
+                    algorithms: ['ARIMA (Primary)', 'Prophet (Primary)', 'Random Forest (Alternative)', 'LSTM (Alternative)'],
+                    rationale: 'ARIMA/Prophet: Proven models for epidemic curve forecasting and seasonal patterns.',
+                    impact: [
+                        'Early interventions (vaccination campaigns, public health messaging)',
+                        'Resource allocation (ICU beds, ventilators, PPE)',
+                        '20-40% reduction in outbreak severity',
+                        'Billions saved in economic disruption'
+                    ],
+                    datasets: [
+                        { name: 'CDC WONDER Database', url: 'https://wonder.cdc.gov/' },
+                        { name: 'WHO Disease Outbreak News', url: 'https://www.who.int/emergencies/disease-outbreak-news' },
+                        { name: 'Kaggle: COVID-19 Data', url: 'https://www.kaggle.com/datasets/imdevskp/corona-virus-report' }
+                    ],
+                    examples: [
+                        { company: 'Google AI', result: 'Flu forecasting achieved 85% accuracy 1 week ahead' },
+                        { company: 'BlueDot', result: 'Predicted COVID-19 outbreak 9 days before WHO' },
+                        { company: 'CDC FluSight', result: 'Ensemble models improved flu forecasting by 30%' }
+                    ],
+                    kpis: [
+                        { metric: 'Forecast accuracy (1-week ahead)', target: '> 80%' },
+                        { metric: 'Early warning lead time', target: '7-14 days' },
+                        { metric: 'MAPE', target: '< 20%' }
+                    ]
+                },
+                {
+                    title: 'Patient Segmentation for Care Management',
+                    challenge: '5% of patients account for 50% of healthcare costs. Population health programs need to identify high-risk, high-cost patients for proactive intervention.',
+                    algorithms: ['K-Means Clustering (Primary)', 'Hierarchical Clustering (Alternative)', 'DBSCAN (Alternative)'],
+                    rationale: 'K-Means: Efficient for large patient populations with clear risk-based segments.',
+                    impact: [
+                        '15-25% cost reduction in high-risk segments',
+                        'Tailored interventions (care coordination, home health, telehealth)',
+                        'Improved patient outcomes',
+                        '$10-30M annual savings for large ACO or health plan'
+                    ],
+                    datasets: [
+                        { name: 'CMS Medicare Claims (limited)', url: 'https://www.cms.gov/Research-Statistics-Data-and-Systems/Statistics-Trends-and-Reports/Medicare-Provider-Charge-Data' },
+                        { name: 'Medical Expenditure Panel Survey (MEPS)', url: 'https://meps.ahrq.gov/mepsweb/' }
+                    ],
+                    examples: [
+                        { company: 'Kaiser Permanente', result: 'Segmented 12M members, 20% cost reduction in high-risk group' },
+                        { company: 'Geisinger Health', result: 'Targeted interventions saved $12M' },
+                        { company: 'Partners HealthCare', result: '35% improvement in care coordination efficiency' }
+                    ],
+                    kpis: [
+                        { metric: 'Total cost of care per segment', target: 'Track and reduce' },
+                        { metric: 'Segment stability', target: '> 75%' },
+                        { metric: 'Intervention effectiveness', target: '15-25% cost reduction' }
+                    ]
+                },
+                {
+                    title: 'Chronic Disease Progression Prediction',
+                    challenge: 'Chronic diseases account for 70% of healthcare spending. Early intervention can slow progression and avoid costly complications.',
+                    algorithms: ['Random Forest (Primary)', 'XGBoost (Primary)', 'Logistic Regression (Alternative)'],
+                    rationale: 'Random Forest/XGBoost: Capture complex interactions between risk factors for progression.',
+                    impact: [
+                        '20-30% reduction in complications',
+                        '$5,000-15,000 saved per patient avoiding complication',
+                        'Improved quality of life',
+                        'Value-based care performance improvement'
+                    ],
+                    datasets: [
+                        { name: 'Kaggle: Diabetes Dataset', url: 'https://www.kaggle.com/datasets/mathchi/diabetes-data-set' },
+                        { name: 'NHANES', url: 'https://www.cdc.gov/nchs/nhanes/index.htm' },
+                        { name: 'UCI: Diabetes 130-US Hospitals', url: 'https://archive.ics.uci.edu/ml/datasets/diabetes+130-us+hospitals+for+years+1999-2008' }
+                    ],
+                    examples: [
+                        { company: 'Cleveland Clinic', result: 'Identified 25% of patients at high risk for diabetes complications' },
+                        { company: 'Kaiser Permanente', result: 'Heart failure progression prediction achieved AUC 0.79' },
+                        { company: 'Optum', result: 'Improved care management ROI by 40%' }
+                    ],
+                    kpis: [
+                        { metric: 'Complication rate', target: '< 10%' },
+                        { metric: 'Prediction AUC', target: '> 0.75' },
+                        { metric: 'Cost per patient reduction', target: '20%' }
+                    ]
+                }
+            ]
+        };
+
+        // Show Domain Problems Function
+        function showDomainProblems(domainKey) {
+            const problems = problemData[domainKey];
+            if (!problems) return;
+
+            let modalContent = '';
+            problems.forEach((problem, idx) => {
+                modalContent += '<div class="problem-detail">';
+                modalContent += '<h3>Problem ' + (idx + 1) + ': ' + problem.title + '</h3>';
+
+                modalContent += '<div class="problem-section" style="background: rgba(255, 215, 0, 0.1); border-left: 4px solid var(--gold);">';
+                modalContent += '<h4>💡 Business Challenge</h4>';
+                modalContent += '<p>' + problem.challenge + '</p>';
+                modalContent += '</div>';
+
+                modalContent += '<div class="problem-section">';
+                modalContent += '<h4>📊 Recommended Algorithms</h4>';
+                modalContent += '<div class="algorithm-tags">';
+                problem.algorithms.forEach((alg, i) => {
+                    modalContent += '<span class="algorithm-tag ' + (i > 0 ? 'alternative' : '') + '">' + alg + '</span>';
+                });
+                modalContent += '</div>';
+                modalContent += '<p style="margin-top: 1rem;"><strong>Why:</strong> ' + problem.rationale + '</p>';
+                modalContent += '</div>';
+
+                modalContent += '<div class="problem-section">';
+                modalContent += '<h4>🎯 Business Impact</h4>';
+                modalContent += '<ul class="impact-list">';
+                problem.impact.forEach(item => {
+                    modalContent += '<li>' + item + '</li>';
+                });
+                modalContent += '</ul>';
+                modalContent += '</div>';
+
+                modalContent += '<div class="problem-section">';
+                modalContent += '<h4>📁 Available Datasets</h4>';
+                modalContent += '<div class="dataset-links">';
+                problem.datasets.forEach(ds => {
+                    modalContent += '<a href="' + ds.url + '" target="_blank" rel="noopener noreferrer" class="dataset-link">';
+                    modalContent += '<strong>🔗 ' + ds.name + '</strong>';
+                    modalContent += '<br><span style="font-size: 0.875rem; color: var(--gray);">Click to open dataset</span>';
+                    modalContent += '</a>';
+                });
+                modalContent += '</div>';
+                modalContent += '</div>';
+
+                if (problem.examples) {
+                    modalContent += '<div class="problem-section">';
+                    modalContent += '<h4>🏆 Real-World Success Stories</h4>';
+                    modalContent += '<div class="success-stories">';
+                    problem.examples.forEach(ex => {
+                        modalContent += '<div class="success-story">';
+                        modalContent += '<strong>' + ex.company + ':</strong> ' + ex.result;
+                        modalContent += '</div>';
+                    });
+                    modalContent += '</div>';
+                    modalContent += '</div>';
+                }
+
+                modalContent += '<div class="problem-section">';
+                modalContent += '<h4>📈 KPIs to Track</h4>';
+                modalContent += '<div class="kpi-grid">';
+                problem.kpis.forEach(kpi => {
+                    modalContent += '<div class="kpi-item">';
+                    modalContent += '<div class="kpi-metric">' + kpi.metric + '</div>';
+                    modalContent += '<div class="kpi-target">' + kpi.target + '</div>';
+                    modalContent += '</div>';
+                });
+                modalContent += '</div>';
+                modalContent += '</div>';
+
+                modalContent += '</div>';
+                if (idx < problems.length - 1) {
+                    modalContent += '<hr style="margin: 3rem 0; border: none; border-top: 2px solid var(--light-gray);">';
+                }
+            });
+
+            document.getElementById('modalBody').innerHTML = modalContent;
+            document.getElementById('problemModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close Modal Function
+        function closeModal() {
+            document.getElementById('problemModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('problemModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
     </script>
 </body>
 </html>
