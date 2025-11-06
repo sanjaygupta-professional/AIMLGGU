@@ -1,0 +1,1657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI/ML Algorithm Playbook - Final Assignment</title>
+    <style>
+        /* CSS Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --apple-blue: #007AFF;
+            --gold: #FFD700;
+            --white: #FFFFFF;
+            --near-black: #1D1D1F;
+            --gray: #86868B;
+            --light-gray: #F5F5F7;
+            --success-green: #34C759;
+            --error-red: #FF3B30;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', 'Segoe UI', system-ui, sans-serif;
+            color: var(--near-black);
+            background: linear-gradient(180deg, var(--white) 0%, var(--light-gray) 100%);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--near-black);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--near-black);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--apple-blue);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--apple-blue);
+        }
+
+        /* Progress Indicator */
+        .progress-bar {
+            position: fixed;
+            top: 60px;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: var(--apple-blue);
+            z-index: 1001;
+            transition: width 0.3s;
+        }
+
+        /* Section Styles */
+        section {
+            min-height: 100vh;
+            padding: 120px 2rem 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s, transform 0.8s;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hero Section */
+        #hero {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg, var(--white) 0%, #E8F4FF 100%);
+            padding-top: 100px;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -0.03em;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.25rem, 3vw, 2rem);
+            color: var(--gray);
+            margin-bottom: 3rem;
+            font-weight: 400;
+        }
+
+        .hero-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            width: 100%;
+            max-width: 900px;
+            margin-top: 3rem;
+        }
+
+        .info-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.12);
+        }
+
+        .info-label {
+            font-size: 0.875rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-value {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--apple-blue);
+        }
+
+        /* Countdown Timer */
+        .countdown-container {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 20px;
+            border: 2px solid var(--gold);
+        }
+
+        .countdown {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .countdown-item {
+            text-align: center;
+        }
+
+        .countdown-value {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--gold);
+            display: block;
+        }
+
+        .countdown-label {
+            font-size: 0.875rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .section-subtitle {
+            font-size: 1.25rem;
+            color: var(--gray);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Algorithm Cards */
+        .algorithm-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .algorithm-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .algorithm-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0, 122, 255, 0.15);
+            border-color: var(--apple-blue);
+        }
+
+        .algorithm-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .algorithm-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--near-black);
+        }
+
+        /* Learning Objectives */
+        .objectives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .objective-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+        }
+
+        .objective-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .objective-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .objective-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--near-black);
+        }
+
+        .objective-description {
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        /* Task Breakdown */
+        .steps-container {
+            margin-top: 3rem;
+        }
+
+        .step {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 24px;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: var(--apple-blue);
+            color: var(--white);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 50px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .step-title {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--near-black);
+        }
+
+        .step-description {
+            color: var(--gray);
+            font-size: 1.125rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        /* Industry Grid */
+        .industry-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .industry-tile {
+            background: linear-gradient(135deg, var(--apple-blue) 0%, #0051D5 100%);
+            color: var(--white);
+            padding: 2rem 1.5rem;
+            border-radius: 16px;
+            text-align: center;
+            font-weight: 600;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .industry-tile:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 122, 255, 0.3);
+        }
+
+        /* Accordion */
+        .accordion {
+            margin-top: 2rem;
+        }
+
+        .accordion-item {
+            background: var(--light-gray);
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1.125rem;
+            transition: background 0.3s;
+        }
+
+        .accordion-header:hover {
+            background: rgba(0, 122, 255, 0.05);
+        }
+
+        .accordion-icon {
+            transition: transform 0.3s;
+        }
+
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 1000px;
+            padding: 1.5rem;
+        }
+
+        /* Two Column Layout */
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .column {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .column-title {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: var(--near-black);
+        }
+
+        .column ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .column li {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--light-gray);
+            color: var(--gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .column li:last-child {
+            border-bottom: none;
+        }
+
+        .page-count {
+            background: var(--apple-blue);
+            color: var(--white);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        thead {
+            background: var(--gold);
+        }
+
+        th {
+            padding: 1.5rem;
+            text-align: left;
+            font-weight: 600;
+            color: var(--near-black);
+        }
+
+        td {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--light-gray);
+            color: var(--gray);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tbody tr:hover {
+            background: rgba(0, 122, 255, 0.03);
+        }
+
+        /* Assessment Cards */
+        .assessment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .assessment-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .assessment-points {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: var(--apple-blue);
+            color: var(--white);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .assessment-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--near-black);
+            padding-right: 80px;
+        }
+
+        .assessment-description {
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        /* Comparison Section */
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .comparison-column {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .comparison-column.weak {
+            border-left: 4px solid var(--error-red);
+        }
+
+        .comparison-column.strong {
+            border-left: 4px solid var(--success-green);
+        }
+
+        .comparison-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .comparison-icon {
+            font-size: 2rem;
+        }
+
+        .comparison-content {
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        .comparison-content h4 {
+            color: var(--near-black);
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            font-size: 1.125rem;
+        }
+
+        .comparison-content ul {
+            margin-top: 1rem;
+            padding-left: 1.5rem;
+        }
+
+        .comparison-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Checklist */
+        .checklist {
+            margin-top: 3rem;
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 24px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .checklist-item:last-child {
+            border-bottom: none;
+        }
+
+        .check-icon {
+            font-size: 2rem;
+            color: var(--success-green);
+            flex-shrink: 0;
+        }
+
+        .checklist-text {
+            font-size: 1.125rem;
+            color: var(--near-black);
+            line-height: 1.6;
+        }
+
+        /* GenAI Grid */
+        .genai-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .genai-section {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 24px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .genai-section.allowed {
+            border-top: 4px solid var(--success-green);
+        }
+
+        .genai-section.required {
+            border-top: 4px solid var(--apple-blue);
+        }
+
+        .genai-title {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .genai-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .genai-list li {
+            padding: 1rem 0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.125rem;
+            color: var(--near-black);
+        }
+
+        .genai-list .icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .warning-box {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: rgba(255, 59, 48, 0.1);
+            border-radius: 16px;
+            border-left: 4px solid var(--error-red);
+        }
+
+        .warning-box p {
+            color: var(--near-black);
+            font-weight: 500;
+            line-height: 1.8;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--apple-blue);
+            color: var(--white);
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s, transform 0.3s;
+            box-shadow: 0 4px 20px rgba(0, 122, 255, 0.3);
+            z-index: 999;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            section {
+                padding: 80px 1.5rem 60px;
+            }
+
+            .two-column,
+            .comparison,
+            .genai-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .countdown {
+                gap: 1rem;
+            }
+
+            .countdown-value {
+                font-size: 2rem;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.25rem;
+            }
+
+            .section-title {
+                font-size: 1.75rem;
+            }
+
+            .algorithm-grid,
+            .objectives-grid,
+            .assessment-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            nav,
+            .back-to-top,
+            .countdown-container {
+                display: none;
+            }
+
+            section {
+                page-break-inside: avoid;
+                min-height: auto;
+                padding: 2rem 1rem;
+            }
+
+            body {
+                background: white;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="nav-logo">AI/ML Playbook</div>
+            <ul class="nav-links">
+                <li><a href="#hero">Overview</a></li>
+                <li><a href="#purpose">Purpose</a></li>
+                <li><a href="#objectives">Objectives</a></li>
+                <li><a href="#tasks">Tasks</a></li>
+                <li><a href="#deliverables">Deliverables</a></li>
+                <li><a href="#assessment">Assessment</a></li>
+                <li><a href="#quality">Quality</a></li>
+                <li><a href="#submission">Submission</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Section 1: Hero/Overview -->
+    <section id="hero">
+        <h1 class="hero-title">AI/ML Algorithm Playbook</h1>
+        <p class="hero-subtitle">Final Group Assignment - Foundations of ML & AI</p>
+
+        <div class="hero-info">
+            <div class="info-card">
+                <div class="info-label">Deadline</div>
+                <div class="info-value">Nov 26, 2025</div>
+            </div>
+            <div class="info-card">
+                <div class="info-label">Format</div>
+                <div class="info-value">Group Project</div>
+            </div>
+            <div class="info-card">
+                <div class="info-label">Deliverable</div>
+                <div class="info-value">10-15 Pages</div>
+            </div>
+        </div>
+
+        <div class="countdown-container">
+            <div class="countdown" id="countdown">
+                <div class="countdown-item">
+                    <span class="countdown-value" id="days">--</span>
+                    <span class="countdown-label">Days</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-value" id="hours">--</span>
+                    <span class="countdown-label">Hours</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-value" id="minutes">--</span>
+                    <span class="countdown-label">Minutes</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-value" id="seconds">--</span>
+                    <span class="countdown-label">Seconds</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Purpose & Context -->
+    <section id="purpose">
+        <div class="section-header">
+            <h2 class="section-title">Purpose & Context</h2>
+            <p class="section-subtitle">
+                As senior leaders, your job is not to tune hyperparameters but to identify high-value business problems,
+                match them to appropriate AI/ML algorithms, and evaluate risks, KPIs, and governance implications.
+            </p>
+        </div>
+
+        <div class="algorithm-grid">
+            <div class="algorithm-card">
+                <span class="algorithm-icon">📈</span>
+                <div class="algorithm-name">Linear Regression</div>
+            </div>
+            <div class="algorithm-card">
+                <span class="algorithm-icon">📊</span>
+                <div class="algorithm-name">Logistic Regression</div>
+            </div>
+            <div class="algorithm-card">
+                <span class="algorithm-icon">🌳</span>
+                <div class="algorithm-name">Decision Trees</div>
+            </div>
+            <div class="algorithm-card">
+                <span class="algorithm-icon">🎯</span>
+                <div class="algorithm-name">KNN</div>
+            </div>
+            <div class="algorithm-card">
+                <span class="algorithm-icon">🛒</span>
+                <div class="algorithm-name">Apriori Algorithm</div>
+            </div>
+            <div class="algorithm-card">
+                <span class="algorithm-icon">🔵</span>
+                <div class="algorithm-name">K-Means Clustering</div>
+            </div>
+            <div class="algorithm-card">
+                <span class="algorithm-icon">🌲</span>
+                <div class="algorithm-name">Hierarchical Clustering</div>
+            </div>
+            <div class="algorithm-card">
+                <span class="algorithm-icon">⚡</span>
+                <div class="algorithm-name">AdaBoost</div>
+            </div>
+            <div class="algorithm-card">
+                <span class="algorithm-icon">🌲</span>
+                <div class="algorithm-name">Random Forests</div>
+            </div>
+            <div class="algorithm-card">
+                <span class="algorithm-icon">📉</span>
+                <div class="algorithm-name">ARIMA</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Learning Objectives -->
+    <section id="objectives">
+        <div class="section-header">
+            <h2 class="section-title">Learning Objectives</h2>
+        </div>
+
+        <div class="objectives-grid">
+            <div class="objective-card">
+                <span class="objective-icon">🎯</span>
+                <h3 class="objective-title">Problem-Algorithm Mapping</h3>
+                <p class="objective-description">
+                    Map business problems to appropriate algorithms from the course, understanding which algorithms
+                    fit which problem types.
+                </p>
+            </div>
+            <div class="objective-card">
+                <span class="objective-icon">🧠</span>
+                <h3 class="objective-title">Justify Selection</h3>
+                <p class="objective-description">
+                    Explain why an algorithm fits based on data type, problem type, interpretability,
+                    and bias-variance profile.
+                </p>
+            </div>
+            <div class="objective-card">
+                <span class="objective-icon">📊</span>
+                <h3 class="objective-title">Link to KPIs</h3>
+                <p class="objective-description">
+                    Connect models to concrete business KPIs such as revenue, cost, risk, and customer metrics.
+                </p>
+            </div>
+            <div class="objective-card">
+                <span class="objective-icon">✓</span>
+                <h3 class="objective-title">Evaluation Strategies</h3>
+                <p class="objective-description">
+                    Describe evaluation metrics and validation strategies including confusion matrix,
+                    ROC-AUC, and cross-validation.
+                </p>
+            </div>
+            <div class="objective-card">
+                <span class="objective-icon">⚠️</span>
+                <h3 class="objective-title">Risk & Governance</h3>
+                <p class="objective-description">
+                    Discuss risks, limitations, and governance implications from an executive perspective.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Task Breakdown -->
+    <section id="tasks">
+        <div class="section-header">
+            <h2 class="section-title">Task Breakdown</h2>
+        </div>
+
+        <div class="steps-container">
+            <!-- Step 1 -->
+            <div class="step">
+                <span class="step-number">1</span>
+                <h3 class="step-title">Choose Your Industry</h3>
+                <p class="step-description">
+                    Select one industry to focus your playbook on. Your report will be written for executives in this sector.
+                </p>
+                <div class="industry-grid">
+                    <div class="industry-tile">🏦 Banking</div>
+                    <div class="industry-tile">🛡️ Insurance</div>
+                    <div class="industry-tile">🛍️ Retail</div>
+                    <div class="industry-tile">🏥 Healthcare</div>
+                    <div class="industry-tile">📱 Telecom</div>
+                    <div class="industry-tile">🏭 Manufacturing</div>
+                    <div class="industry-tile">🚚 Logistics</div>
+                    <div class="industry-tile">⚡ Energy</div>
+                    <div class="industry-tile">🏛️ Public Sector</div>
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="step">
+                <span class="step-number">2</span>
+                <h3 class="step-title">Algorithm Assignment</h3>
+                <p class="step-description">
+                    Each team member picks ONE algorithm from the 10 covered in the course.
+                    Each member must choose a different algorithm.
+                </p>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="step">
+                <span class="step-number">3</span>
+                <h3 class="step-title">Core Requirements</h3>
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <span>1. Identify Strong Use Case</span>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            For each algorithm, identify at least one strong use case in your chosen industry
+                            (real-world case or realistic synthesis). Each algorithm can have a different use-case,
+                            or you can weave all algorithms into different aspects of a single use case.
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <span>2. Explain Business Problem and Data</span>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            Clearly describe the business problem you're solving and the data that would be used.
+                            Include details about data sources, types, and characteristics relevant to the algorithm.
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <span>3. Justify Algorithm Selection</span>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            Explain why that algorithm is appropriate for this specific problem, considering
+                            data type, problem type, interpretability, and bias-variance profile.
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <span>4. Define KPIs and Evaluation</span>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            Identify which business KPIs are impacted and how you would evaluate and validate the model.
+                            Include specific metrics like precision, recall, RMSE, etc.
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <span>5. Discuss Limitations</span>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            Address potential issues like overfitting/underfitting, data quality concerns,
+                            and other practical limitations of the approach.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Deliverables -->
+    <section id="deliverables">
+        <div class="section-header">
+            <h2 class="section-title">Deliverables</h2>
+        </div>
+
+        <div class="two-column">
+            <div class="column">
+                <h3 class="column-title">Group Report</h3>
+                <ul>
+                    <li>
+                        <span>Executive Summary</span>
+                        <span class="page-count">1 page</span>
+                    </li>
+                    <li>
+                        <span>Industry & Data Landscape</span>
+                        <span class="page-count">1-2 pages</span>
+                    </li>
+                    <li>
+                        <span>Algorithm Playbook</span>
+                        <span class="page-count">6-9 pages</span>
+                    </li>
+                    <li>
+                        <span>Cross-Algorithm Comparison</span>
+                        <span class="page-count">1-2 pages</span>
+                    </li>
+                    <li>
+                        <span>References & Appendices</span>
+                        <span class="page-count">8-10 sources</span>
+                    </li>
+                </ul>
+                <p style="margin-top: 2rem; color: var(--gray); line-height: 1.8;">
+                    Total length: 10-15 pages. Include contribution matrix showing which team member
+                    contributed to each section.
+                </p>
+            </div>
+
+            <div class="column">
+                <h3 class="column-title">Individual Reflection</h3>
+                <ul>
+                    <li>
+                        <span>Algorithm Owned</span>
+                        <span class="page-count">1-2 pages</span>
+                    </li>
+                    <li>
+                        <span>Key Learnings</span>
+                    </li>
+                    <li>
+                        <span>Application to Own Organization</span>
+                    </li>
+                    <li>
+                        <span>Reflections on Evaluation</span>
+                    </li>
+                    <li>
+                        <span>Bias-Variance Considerations</span>
+                    </li>
+                </ul>
+                <p style="margin-top: 2rem; color: var(--gray); line-height: 1.8;">
+                    Each member submits their own reflection note, attached as an appendix in the group report.
+                    One appendix section per student.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: Team Collaboration -->
+    <section id="collaboration">
+        <div class="section-header">
+            <h2 class="section-title">Team Collaboration</h2>
+            <p class="section-subtitle">
+                Each member is the primary owner for exactly one algorithm. Include a contribution matrix
+                in your appendix showing task ownership.
+            </p>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Task / Section</th>
+                    <th>Primary Owner</th>
+                    <th>Secondary Contributors</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Industry & Data Landscape</td>
+                    <td>Team Member A</td>
+                    <td>Team Member B</td>
+                </tr>
+                <tr>
+                    <td>Linear Regression Section</td>
+                    <td>Team Member B</td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td>Logistic Regression Section</td>
+                    <td>Team Member C</td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td>Decision Trees Section</td>
+                    <td>Team Member D</td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td>Cross-Algorithm Comparison</td>
+                    <td>Team Member A</td>
+                    <td>All Members</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div style="margin-top: 3rem; padding: 2rem; background: var(--white); border-radius: 20px; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);">
+            <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem;">Individual Responsibility</h3>
+            <p style="color: var(--gray); line-height: 1.8;">
+                The primary owner is responsible for the first draft of that algorithm's section, ensuring a strong
+                business-grounded use case, and correct metrics and evaluation logic. Other members may help refine
+                and edit, but the primary owner is accountable.
+            </p>
+        </div>
+    </section>
+
+    <!-- Section 7: Assessment Criteria -->
+    <section id="assessment">
+        <div class="section-header">
+            <h2 class="section-title">Assessment Criteria</h2>
+            <p class="section-subtitle">
+                Your grade comprises 70% group component and 30% individual component
+            </p>
+        </div>
+
+        <h3 style="font-size: 1.75rem; font-weight: 600; margin-bottom: 2rem; margin-top: 3rem;">Group Component (70%)</h3>
+        <div class="assessment-grid">
+            <div class="assessment-card">
+                <div class="assessment-points">20</div>
+                <h4 class="assessment-title">Quality & Relevance of Use Cases</h4>
+                <p class="assessment-description">
+                    Use cases are real or realistic, clearly described, and strongly tied to the chosen industry.
+                    Sources are credible and properly cited.
+                </p>
+            </div>
+            <div class="assessment-card">
+                <div class="assessment-points">10</div>
+                <h4 class="assessment-title">Correct Problem-Algorithm Mapping</h4>
+                <p class="assessment-description">
+                    Demonstrates understanding of which algorithm fits which problem type (supervised/unsupervised/time-series,
+                    classification vs regression, etc.).
+                </p>
+            </div>
+            <div class="assessment-card">
+                <div class="assessment-points">10</div>
+                <h4 class="assessment-title">Evaluation & Metrics Treatment</h4>
+                <p class="assessment-description">
+                    Appropriate use of confusion matrix, accuracy, precision, recall, ROC-AUC, regression error metrics,
+                    and correct reasoning.
+                </p>
+            </div>
+            <div class="assessment-card">
+                <div class="assessment-points">10</div>
+                <h4 class="assessment-title">Bias-Variance & Validation</h4>
+                <p class="assessment-description">
+                    Shows understanding of bias-variance tradeoff, over/underfitting, use of k-fold CV or
+                    train-test-validation splits, and monitoring/drift.
+                </p>
+            </div>
+            <div class="assessment-card">
+                <div class="assessment-points">10</div>
+                <h4 class="assessment-title">Cross-Algorithm Insight</h4>
+                <p class="assessment-description">
+                    Clear comparative insights on when to use different algorithms, tradeoffs in interpretability,
+                    performance, and business fit.
+                </p>
+            </div>
+            <div class="assessment-card">
+                <div class="assessment-points">10</div>
+                <h4 class="assessment-title">Clarity & Executive Communication</h4>
+                <p class="assessment-description">
+                    Report is well-structured, concise yet rich. Presentation is compelling, visually clear,
+                    and appropriate for executives.
+                </p>
+            </div>
+        </div>
+
+        <h3 style="font-size: 1.75rem; font-weight: 600; margin-bottom: 2rem; margin-top: 4rem;">Individual Component (30%)</h3>
+        <div class="assessment-grid">
+            <div class="assessment-card">
+                <div class="assessment-points">15</div>
+                <h4 class="assessment-title">Quality of Individual Sections</h4>
+                <p class="assessment-description">
+                    Conceptual accuracy, depth, and clarity of the algorithm owned by the student
+                    (as seen in report body + appendix).
+                </p>
+            </div>
+            <div class="assessment-card">
+                <div class="assessment-points">15</div>
+                <h4 class="assessment-title">Individual Reflection Note</h4>
+                <p class="assessment-description">
+                    Thoughtfulness, evidence of learning, and linkage to own context/organization.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 8: Quality Standards -->
+    <section id="quality">
+        <div class="section-header">
+            <h2 class="section-title">Quality Standards</h2>
+            <p class="section-subtitle">
+                Example: Logistic Regression for Credit Card Default Prediction
+            </p>
+        </div>
+
+        <div class="comparison">
+            <div class="comparison-column weak">
+                <div class="comparison-header">
+                    <span class="comparison-icon">❌</span>
+                    <span>Weak Example</span>
+                </div>
+                <div class="comparison-content">
+                    <p>
+                        Logistic Regression is a machine learning algorithm used for classification. In our bank,
+                        we can use it to predict which customers will default on their credit cards. We will collect
+                        lots of data and train the model. If the accuracy is high, the model is good and we can use it
+                        to approve or reject customers. Logistic Regression is good because it is simple and used a lot
+                        in the industry. We will check the confusion matrix and try to reduce errors. This will help
+                        the bank reduce risk.
+                    </p>
+
+                    <h4>Issues:</h4>
+                    <ul>
+                        <li>Very generic; could be copied from anywhere</li>
+                        <li>No specific mention of data used</li>
+                        <li>Relies only on "accuracy" without discussing class imbalance</li>
+                        <li>No explicit link to business KPIs</li>
+                        <li>No discussion of regulatory or interpretability requirements</li>
+                        <li>No mention of validation approach or bias-variance tradeoff</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="comparison-column strong">
+                <div class="comparison-header">
+                    <span class="comparison-icon">✓</span>
+                    <span>Strong Example</span>
+                </div>
+                <div class="comparison-content">
+                    <p>
+                        <strong>Business problem:</strong> The bank wants to reduce credit card defaults in its mass
+                        retail segment without unnecessarily rejecting profitable customers. We frame this as a binary
+                        classification problem: default within 12 months (yes/no).
+                    </p>
+                    <p>
+                        <strong>Data:</strong> 3 years of historical credit card data including demographics, account
+                        behavior (utilization ratio, late payments), and bureau variables. Target label is 90+ days
+                        past due within 12 months.
+                    </p>
+                    <p>
+                        <strong>Why Logistic Regression:</strong> Risk team and regulators require an interpretable model.
+                        Logistic Regression provides clear coefficients and odds ratios. Less prone to overfitting with
+                        proper regularization.
+                    </p>
+                    <p>
+                        <strong>KPIs and metrics:</strong> Focus on reducing default rate (NPL%) and expected loss.
+                        Overall accuracy less meaningful (only 5-7% default rate). Focus on recall, precision, and ROC curve.
+                        Select threshold based on risk appetite and misclassification costs.
+                    </p>
+                    <p>
+                        <strong>Validation:</strong> Train/validation/test splits with stratified k-fold cross-validation.
+                        L2 regularization to control variance. Track performance over time to detect drift.
+                    </p>
+                    <p>
+                        <strong>Risks:</strong> Assumes linear relationship in log-odds space. Address with interaction terms.
+                        Check for bias across protected groups. Regular back-testing required.
+                    </p>
+
+                    <h4>Strengths:</h4>
+                    <ul>
+                        <li>Clearly states business problem with specific scope</li>
+                        <li>Describes data in realistic detail</li>
+                        <li>Explains algorithm appropriateness (interpretability, regulation)</li>
+                        <li>Links to concrete business KPIs</li>
+                        <li>Proper validation strategy and overfitting control</li>
+                        <li>Addresses governance and fairness concerns</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 9: Submission Guidelines -->
+    <section id="submission">
+        <div class="section-header">
+            <h2 class="section-title">Submission Guidelines</h2>
+        </div>
+
+        <div class="checklist">
+            <div class="checklist-item">
+                <span class="check-icon">✓</span>
+                <div class="checklist-text">
+                    <strong>Single Submission Per Group:</strong> Only one member should submit. Other members won't
+                    see it in their portal, but mapping is tracked on the backend.
+                </div>
+            </div>
+            <div class="checklist-item">
+                <span class="check-icon">✓</span>
+                <div class="checklist-text">
+                    <strong>PDF Format Only:</strong> Submissions must be in PDF format. Other formats will not be accepted.
+                </div>
+            </div>
+            <div class="checklist-item">
+                <span class="check-icon">✓</span>
+                <div class="checklist-text">
+                    <strong>Multiple Files:</strong> Upload all files to a shared drive and provide the link in a PDF.
+                    Set access to "Anyone with the link can view."
+                </div>
+            </div>
+            <div class="checklist-item">
+                <span class="check-icon">✓</span>
+                <div class="checklist-text">
+                    <strong>Submit Early:</strong> Submit at least 30 minutes before the deadline.
+                    Submissions cannot be changed once uploaded.
+                </div>
+            </div>
+            <div class="checklist-item">
+                <span class="check-icon">✓</span>
+                <div class="checklist-text">
+                    <strong>Need Help?</strong> Contact student support before the deadline for any issues.
+                </div>
+            </div>
+        </div>
+
+        <div class="countdown-container" style="margin-top: 3rem;">
+            <h3 style="text-align: center; font-size: 1.5rem; margin-bottom: 1.5rem;">Final Deadline</h3>
+            <div style="text-align: center; font-size: 2rem; font-weight: 700; color: var(--gold); margin-bottom: 1rem;">
+                November 26, 2025 • 11:59 PM IST
+            </div>
+            <div class="countdown" id="countdown2">
+                <div class="countdown-item">
+                    <span class="countdown-value" id="days2">--</span>
+                    <span class="countdown-label">Days</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-value" id="hours2">--</span>
+                    <span class="countdown-label">Hours</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-value" id="minutes2">--</span>
+                    <span class="countdown-label">Minutes</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-value" id="seconds2">--</span>
+                    <span class="countdown-label">Seconds</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 10: GenAI Policy -->
+    <section id="genai">
+        <div class="section-header">
+            <h2 class="section-title">GenAI Policy</h2>
+        </div>
+
+        <div class="genai-grid">
+            <div class="genai-section allowed">
+                <h3 class="genai-title">
+                    <span style="font-size: 2rem;">✓</span>
+                    <span>Allowed</span>
+                </h3>
+                <ul class="genai-list">
+                    <li>
+                        <span class="icon" style="color: var(--success-green);">✓</span>
+                        <span>Identify potential use cases</span>
+                    </li>
+                    <li>
+                        <span class="icon" style="color: var(--success-green);">✓</span>
+                        <span>Brainstorm and outline sections</span>
+                    </li>
+                    <li>
+                        <span class="icon" style="color: var(--success-green);">✓</span>
+                        <span>Discover relevant sources</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="genai-section required">
+                <h3 class="genai-title">
+                    <span style="font-size: 2rem;">✓</span>
+                    <span>Required</span>
+                </h3>
+                <ul class="genai-list">
+                    <li>
+                        <span class="icon" style="color: var(--apple-blue);">✓</span>
+                        <span>Verify all facts independently</span>
+                    </li>
+                    <li>
+                        <span class="icon" style="color: var(--apple-blue);">✓</span>
+                        <span>Cite sources properly</span>
+                    </li>
+                    <li>
+                        <span class="icon" style="color: var(--apple-blue);">✓</span>
+                        <span>Write in your own words</span>
+                    </li>
+                    <li>
+                        <span class="icon" style="color: var(--apple-blue);">✓</span>
+                        <span>Understand every sentence</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="warning-box">
+            <p>
+                <strong>⚠️ Accountability:</strong> Assume you must understand and defend every sentence you submit.
+                If you cannot explain it in class, it should not be in your report. Do not paste raw AI-generated content.
+                You are accountable for accuracy and coherence.
+            </p>
+        </div>
+    </section>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">↑</button>
+
+    <script>
+        // Countdown Timer
+        function updateCountdown() {
+            const deadline = new Date('2025-11-26T23:59:00+05:30').getTime();
+            const now = new Date().getTime();
+            const distance = deadline - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+
+            // Update second countdown
+            document.getElementById('days2').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours2').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes2').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds2').textContent = seconds.toString().padStart(2, '0');
+
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                document.getElementById('days').textContent = '00';
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('minutes').textContent = '00';
+                document.getElementById('seconds').textContent = '00';
+                document.getElementById('days2').textContent = '00';
+                document.getElementById('hours2').textContent = '00';
+                document.getElementById('minutes2').textContent = '00';
+                document.getElementById('seconds2').textContent = '00';
+            }
+        }
+
+        const countdownInterval = setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Scroll Progress Bar
+        window.addEventListener('scroll', () => {
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight - windowHeight;
+            const scrolled = window.scrollY;
+            const progress = (scrolled / documentHeight) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        });
+
+        // Intersection Observer for Fade-in Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Active Navigation Link
+        const navLinks = document.querySelectorAll('.nav-links a');
+        window.addEventListener('scroll', () => {
+            let current = '';
+            document.querySelectorAll('section').forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Back to Top Button
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Accordion Functionality
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header.parentElement;
+                const wasActive = item.classList.contains('active');
+
+                // Close all accordion items
+                document.querySelectorAll('.accordion-item').forEach(accItem => {
+                    accItem.classList.remove('active');
+                });
+
+                // Open clicked item if it wasn't active
+                if (!wasActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Industry Tile Click Effect
+        document.querySelectorAll('.industry-tile').forEach(tile => {
+            tile.addEventListener('click', function() {
+                // Remove selection from all tiles
+                document.querySelectorAll('.industry-tile').forEach(t => {
+                    t.style.opacity = '0.5';
+                });
+                // Highlight selected tile
+                this.style.opacity = '1';
+                this.style.transform = 'scale(1.05)';
+            });
+        });
+
+        // Algorithm Card Click Effect
+        document.querySelectorAll('.algorithm-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.background = 'linear-gradient(135deg, var(--apple-blue) 0%, #0051D5 100%)';
+                this.style.color = 'white';
+                setTimeout(() => {
+                    this.style.background = 'var(--white)';
+                    this.style.color = 'var(--near-black)';
+                }, 300);
+            });
+        });
+
+        // Smooth Scroll for Navigation Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Initial visibility for first section
+        document.querySelector('#hero').classList.add('visible');
+    </script>
+</body>
+</html>
