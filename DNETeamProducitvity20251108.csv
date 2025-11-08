@@ -1,0 +1,16 @@
+﻿Team,Sprint,Target Velocity,Committed SP,Delivered SP,Inflation correction,Normalized Target Velocity,Normalized Planned SP,Normalized Delivered SP,Normalized Inflation SP,Productivity,Predictability,Moving Average (2),Moving Average (3),Notes
+DNE,DNE S25.08,20,34,10,0,69,117.3,34.5,0.0,50%,29%,,,"SP estimation still done by previous team, most SP delivered also from previous team devs"
+DNE,DNE S25.09,20,30,14,0,69,103.5,48.3,0.0,70%,47%,41.4,,"SP estimation still done by previous team, most SP delivered also from previous team devs"
+DNE,DNE S25.10,20,29,6,-1,69,100.1,20.7,-3.5,25%,21%,32.8,33.4,1 SP inflation to remove service moment from domain service
+DNE,DNE S25.11,20,28,6,-1,69,96.6,20.7,-3.5,25%,21%,17.3,27.6,1 SP inflation to deliver test automation in split story
+DNE,DNE S25.12,20,33,12,-7,69,113.9,41.4,-24.2,25%,36%,17.3,17.3,
+DNE,DNE S25.13,20,29,8,-1,69,100.1,27.6,-3.5,35%,28%,20.7,19.6,
+DNE,DNE S25.14,20,35,30,-6,69,120.8,103.5,-20.7,120%,86%,53.5,41.4,
+DNE,DNE S25.15,20,23,7,-1,69,79.4,24.2,-3.5,30%,30%,51.8,42.6,
+DNE,DNE S25.16,20,27,19,-4,69,93.2,65.6,-13.8,75%,70%,36.2,51.8,
+DNE,DNE S25.17,69,63,54,-7,69,63.0,54.0,-7.0,68%,86%,49.4,39.8,Mix of old and new estimation model with a number of stories quick converted
+DNE,DNE S25.18,69,62,62,-8,69,62.0,62.0,-8.0,78%,100%,50.5,50.9,
+DNE,DNE S25.19,69,34,31,-3,69,34.0,31.0,-3.0,41%,91%,41.0,43.0,"1 out of 2 BE devs on holiday full sprint, resulting in (much) lower commit; lost a number of points due to scope change"
+DNE,DNE S25.20,69,60,49,-3,69,60.0,49.0,-3.0,67%,82%,37.0,42.7,"Back to the trend line, some carry over as anticipated before start. Missed some devops skills during sprint."
+DNE,DNE S25.21,69,38,38,-3,69,38.0,38.0,-3.0,51%,100%,40.5,36.3,Lower productivity due to Diwali.
+DNE,DNE S25.22,69,45,40,0,69,45.0,40.0,0.0,58%,89%,37.5,40.3,

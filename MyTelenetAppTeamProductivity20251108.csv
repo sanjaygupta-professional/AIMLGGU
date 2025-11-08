@@ -1,0 +1,16 @@
+Team,Sprint,Target Velocity,Committed SP,Delivered SP,Inflation correction,Normalized Target Velocity,Normalized Planned SP,Normalized Delivered SP,Normalized Inflation SP,Productivity,Predictability,Moving Average (2),Moving Average (3),Notes
+MyTelenet- app,S25.8,120,/,/,/,158,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,,,
+MyTelenet- app,S25.9,120,/,/,/,158,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,,
+MyTelenet- app,S25.10,120,/,/,/,158,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,Some teammemembers are working very long hours
+MyTelenet- app,S25.11,120,/,/,/,158,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,Still lot of support needed from WD devs for frontend dev.
+MyTelenet- app,S25.12,120,/,/,/,158,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,lot of stories could not be completed in testing due to environment instability
+MyTelenet- app,S25.13,120,/,/,/,158,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,#VALUE!,stories could not be completed due to lokalise (copy) delay issues.  
+MyTelenet- app,S25.14,120,120,112,-37,158,158.0,147.5,-48.7,63%,93%,#VALUE!,#VALUE!,Still lots of support needed from WD devs.   Many bugs come out of testing. 
+MyTelenet- app,S25.15,120,115,104,-34,158,151.4,136.9,-45.2,58%,90%,95.3,#VALUE!,lots of time spend on android upgrade story by lead Andoid dev which had impact on other story deliveries
+MyTelenet- app,S25.16,120,94,80,-26,158,123.8,105.3,-34.8,45%,85%,81.2,87.0,BE stories not counted but made big steps in delivery.
+MyTelenet- app,S25.17,120,79,76,-25,158,104.0,100.1,-33.0,42%,96%,68.8,76.5,
+MyTelenet- app,S25.18,120,108,97,-32,158,142.2,127.7,-42.1,54%,90%,76.3,74.4,
+MyTelenet- app,S25.19,158,159,150,-50,158,159.0,150.0,-49.5,64%,94%,93.0,84.4,
+MyTelenet- app,S25.20,158,130,105,-35,158,130.0,105.0,-34.7,45%,81%,85.4,85.5,
+MyTelenet- app,S25.21,158,124,104,-34,158,124.0,104.0,-34.3,44%,84%,70.0,80.2,
+MyTelenet- app,S25.22,158,157,120,-39,158,157.0,119.7,-39.5,51%,76%,74.9,73.4,
